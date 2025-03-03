@@ -1,0 +1,36 @@
+QUESTION:
+
+def variable_correlation(variable1, variable2):
+    '''
+    Fill in this function to calculate the number of data points for which
+    the directions of variable1 and variable2 relative to the mean are the
+    same, and the number of data points for which they are different.
+    Direction here means whether each value is above or below its mean.
+    
+    You can classify cases where the value is equal to the mean for one or
+    both variables however you like.
+    
+    Each argument will be a Pandas series.
+    
+    For example, if the inputs were pd.Series([1, 2, 3, 4]) and
+    pd.Series([4, 5, 6, 7]), then the output would be (4, 0).
+    This is because 1 and 4 are both below their means, 2 and 5 are both
+    below, 3 and 6 are both above, and 4 and 7 are both above.
+    
+    On the other hand, if the inputs were pd.Series([1, 2, 3, 4]) and
+    pd.Series([7, 6, 5, 4]), then the output would be (0, 4).
+    This is because 1 is below its mean but 7 is above its mean, and
+    so on.
+    '''
+    num_same_direction = None        # Replace this with your code
+    num_different_direction = None   # Replace this with your code
+    
+    return (num_same_direction, num_different_direction)
+    
+SOLUTION: 
+
+# Sum of numbers of both x and y > 0 or both < 0
+num_same_direction = sum([1 for x, y in zip(variable1-variable1.mean(), variable2-variable2.mean()) if (x>0 and y>0) or (x<0 and y<0)])   
+
+# Sum of numbers of either (x > 0 and y < 0) or (x < 0 and y > 0)
+num_different_direction = sum([1 for x, y in zip(variable1-variable1.mean(), variable2-variable2.mean()) if (x>0 and y<0) or (x<0 and y>0)])
