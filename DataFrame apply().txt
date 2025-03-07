@@ -1,0 +1,22 @@
+QUESTION:
+
+import pandas as pd
+
+grades_df = pd.DataFrame(
+    data={'exam1': [43, 81, 78, 75, 89, 70, 91, 65, 98, 87],
+          'exam2': [24, 63, 56, 56, 67, 51, 79, 46, 72, 60]},
+    index=['Andre', 'Barry', 'Chris', 'Dan', 'Emilio', 
+           'Fred', 'Greta', 'Humbert', 'Ivan', 'James']
+)
+
+
+def standardize(df):
+    '''
+    Fill in this function to standardize each column of the given
+    DataFrame. To standardize a variable, convert each value to the
+    number of standard deviations it is above or below the mean.
+    '''
+    return df.apply(std_grades)
+
+def std_grades(exam_grades):
+    return (exam_grades - exam_grades.mean())/exam_grades.std(ddof=0)
