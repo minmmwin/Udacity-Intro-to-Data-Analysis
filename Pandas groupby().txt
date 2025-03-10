@@ -1,0 +1,28 @@
+QUESTION:
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import seaborn as sns
+    
+filename = '/datasets/ud170/subway/nyc_subway_weather.csv'
+subway_df = pd.read_csv(filename)
+
+### Write code here to group the subway data by a variable of your choice, then
+### either print out the mean ridership within each group or create a plot.
+
+
+SOLUTION:
+
+entries = subway_df['ENTRIESn_hourly']
+entries_df = pd.DataFrame({
+    'value': entries,
+    'under_100': entries < 100,
+    'above_500': entries > 500 
+})
+
+grouped_entries = entries_df.groupby('under_100')
+grouped_entries_both = entries_df.groupby(['under_100', 'above_500'])
+print(grouped_entries['value'].mean())
+print(grouped_entries_both['value'].mean())
+

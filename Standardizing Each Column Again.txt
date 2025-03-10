@@ -1,0 +1,39 @@
+QUESTION:
+
+import pandas as pd
+    
+grades_df = pd.DataFrame(
+    data={'exam1': [43, 81, 78, 75, 89, 70, 91, 65, 98, 87],
+          'exam2': [24, 63, 56, 56, 67, 51, 79, 46, 72, 60]},
+    index=['Andre', 'Barry', 'Chris', 'Dan', 'Emilio', 
+           'Fred', 'Greta', 'Humbert', 'Ivan', 'James']
+)
+
+def standardize(df):
+    '''
+    Fill in this function to standardize each column of the given
+    DataFrame. To standardize a variable, convert each value to the
+    number of standard deviations it is above or below the mean.
+    
+    This time, try to use vectorized operations instead of apply().
+    You should get the same results as you did before.
+    '''
+    return None
+
+def standardize_rows(df):
+    '''
+    Optional: Fill in this function to standardize each row of the given
+    DataFrame. Again, try not to use apply().
+    
+    This one is more challenging than standardizing each column!
+    '''
+    return None
+
+SOLUTION:
+
+def standardize(df):
+	return df.sub(df.mean(), axis='columns').div(df.std(ddof=0))
+
+def standardize_rows(df):
+	return df.sub(df.mean(axis=1), axis='index').div(df.std(ddof=0, axis=1), axis='index')
+
